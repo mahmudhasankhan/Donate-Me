@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "335348428381",
+    "project_id": "donate-me-b4fad",
+    "storage_bucket": "donate-me-b4fad.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:335348428381:android:2aae7a9a6ad923864d27b4",
+        "android_client_info": {
+          "package_name": "com.mahmud.donate_me"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "335348428381-hvjvtlq6jkj2a8heoaflejadv0qi5kku.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrfc4FzqEr1QjB5IJuJz0MrgYdjdadwM0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "335348428381-hvjvtlq6jkj2a8heoaflejadv0qi5kku.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

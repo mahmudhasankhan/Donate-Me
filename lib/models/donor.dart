@@ -6,19 +6,24 @@ class DonorModel {
   static const ADDRESS = 'address';
   static const EMAIL = 'email';
   static const PASSWORD = 'password';
+  static const PHONE = 'phone';
 
   late String id;
   late String name;
   late String address;
   late String email;
   late String password;
+  late String phone;
 
   DonorModel(
-      {required this.id,
-      required this.name,
-      required this.address,
-      required this.email,
-      required this.password});
+      {this.id = '',
+      this.name = '',
+       this.address= '',
+       this.email = '',
+       this.password = '',
+       this.phone = ''});
+
+  DonorModel.def();
 
   DonorModel.fromSnapshot(DocumentSnapshot snapshot) {
     id = snapshot[ID];
@@ -26,5 +31,6 @@ class DonorModel {
     address = snapshot[ADDRESS];
     email = snapshot[EMAIL];
     password = snapshot[PASSWORD];
+    phone = snapshot[PHONE];
   }
 }

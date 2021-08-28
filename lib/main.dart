@@ -5,6 +5,7 @@ import 'package:donate_me/screens/choice_screen.dart';
 import 'package:donate_me/screens/choice_screen_two.dart';
 import 'package:donate_me/constants/constants.dart';
 import 'package:donate_me/screens/auth/reg_donor_screen.dart';
+import 'package:donate_me/screens/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'constants/firebase.dart';
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/choice-screen-two', page: () => ChoiceScreenTwo()),
         GetPage(name: '/sign-up-screen', page: () => RegDonorScreen()),
         GetPage(name: '/sign-in-screen', page: ()=> SignInScreen()),
+        GetPage(name: '/home-screen', page: ()=> HomeScreen()),
       ],
     );
   }

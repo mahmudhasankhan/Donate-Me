@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class DonorModel {
+class OrgModel {
   static const ID = 'id';
   static const NAME = 'name';
   static const ADDRESS = 'address';
@@ -13,14 +13,15 @@ class DonorModel {
   late String email;
   late String password;
 
-  DonorModel(
-      {required this.id,
-      required this.name,
-      required this.address,
-      required this.email,
-      required this.password});
+  OrgModel({
+    required this.id,
+    required this.name,
+    required this.address,
+    required this.email,
+    required this.password,
+  });
 
-  DonorModel.fromSnapshot(DocumentSnapshot snapshot) {
+  OrgModel.fromSnapshot(DocumentSnapshot snapshot) {
     id = snapshot[ID];
     name = snapshot[NAME];
     address = snapshot[ADDRESS];

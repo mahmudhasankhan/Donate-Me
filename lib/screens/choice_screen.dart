@@ -12,11 +12,10 @@ class ChoiceScreen extends StatelessWidget {
         body: Stack(
           alignment: Alignment.center,
           children: [
-            Container(
-            height: size.height,
-            width: double.infinity,
-            decoration: backgroundImage,
-          ),
+            Image.asset('assets/images/empty_screen.png',
+        width: double.infinity,
+        height: size.height,
+        fit: BoxFit.cover,),
           Positioned(
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,

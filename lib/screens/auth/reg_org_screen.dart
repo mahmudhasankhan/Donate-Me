@@ -1,14 +1,12 @@
+import 'package:donate_me/constants/constants.dart';
 import 'package:donate_me/constants/controllers.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../constants/constants.dart';
 
-class RegDonorScreen extends StatelessWidget {
-  const RegDonorScreen({Key? key}) : super(key: key);
-
-
+class RegOrgScreen extends StatelessWidget {
+  const RegOrgScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,20 +21,21 @@ class RegDonorScreen extends StatelessWidget {
       body: Stack(
         alignment: Alignment.center,
         children: [
-          Image.asset('assets/images/empty_screen.png',
-        width: double.infinity,
-        height: size.height,
-        fit: BoxFit.cover,),
+          Image.asset(
+            'assets/images/empty_screen.png',
+            width: double.infinity,
+            height: size.height,
+            fit: BoxFit.cover,
+          ),
           SafeArea(
               child: Padding(
             padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
             child: Column(
               children: [
                 Spacer(
-                  flex: 2,
                 ),
                 Text(
-                  "Sign Up Please!",
+                  "Register Your Organization",
                   style: categoryFont,
                   textAlign: TextAlign.center,
                 ),
@@ -55,7 +54,7 @@ class RegDonorScreen extends StatelessWidget {
                           vertical: kDefaultPadding),
                       child: SingleChildScrollView(
                         child: Form(
-                              key: authController.signupFormKey,
+                              key: authController.orgsignupFormKey,
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -68,10 +67,10 @@ class RegDonorScreen extends StatelessWidget {
                                         border: OutlineInputBorder(
                                             borderRadius:
                                                 BorderRadius.circular(10)),
-                                        labelText: 'Name',
+                                        labelText: 'Organization Name',
                                         hintText: 'Enter your name',
                                         prefixIcon: Icon(
-                                            Icons.account_circle_outlined)),
+                                            Icons.business_rounded)),
                                     keyboardType: TextInputType.name,
                                   ),
                                   SizedBox(
@@ -152,9 +151,9 @@ class RegDonorScreen extends StatelessWidget {
                                       ),
                                       onPressed: () {
                                         if (authController
-                                            .signupFormKey.currentState!
+                                            .orgsignupFormKey.currentState!
                                             .validate()) {
-                                          authController.donorSignUp();
+                                          authController.orgSignUp();
                                         }
                                       },
                                       style: ButtonStyle(
@@ -188,7 +187,7 @@ class RegDonorScreen extends StatelessWidget {
                             ..onTap = () => Get.toNamed('/sign-in-screen'))
                     ])),
                 Spacer(
-                  flex: 3,
+                  flex: 6,
                 )
               ],
             ),

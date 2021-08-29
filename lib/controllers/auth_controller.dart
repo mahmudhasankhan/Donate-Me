@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:donate_me/helpers/show_loading.dart';
 import 'package:donate_me/models/donor.dart';
+import 'package:donate_me/models/org.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -10,9 +11,16 @@ import '../constants/firebase.dart';
 
 class AuthController extends GetxController {
   static AuthController instance = Get.find();
-  final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
+  GlobalKey<FormState> signupFormKey = GlobalKey<FormState>();
+  GlobalKey<FormState> signinFormKey = GlobalKey<FormState>();
+  GlobalKey<FormState> orgsigninFormKey = GlobalKey<FormState>();
+  GlobalKey<FormState> orgsignupFormKey = GlobalKey<FormState>();
+
   String donorsCollection = 'donors';
+  String orgsCollection = 'organizations';
+
   Rx<DonorModel> donorModel = DonorModel().obs;
+  Rx<OrgModel> orgModel = OrgModel().obs;
 
   late Rx<User?> firebaseUser;
   TextEditingController name = TextEditingController();
@@ -37,6 +45,23 @@ class AuthController extends GetxController {
     }
   }
 
+  void orgSignIn() async {
+    try {
+      showLoading();
+      await auth
+          .signInWithEmailAndPassword(
+              email: email.text.trim(), password: password.text.trim())
+          .then((result) {
+        String _userId = result.user!.uid;
+        _initializeOrgModel(_userId);
+        _clearSignInControllers();
+      });
+    } catch (e) {
+      debugPrint(e.toString());
+      Get.snackbar('Sign In Failed', 'Try again');
+    }
+  }
+
   void donorSignIn() async {
     try {
       showLoading();
@@ -51,6 +76,24 @@ class AuthController extends GetxController {
     } catch (e) {
       debugPrint(e.toString());
       Get.snackbar('Sign In Failed', 'Try again');
+    }
+  }
+
+  void orgSignUp() async {
+    try {
+      showLoading();
+      await auth
+          .createUserWithEmailAndPassword(
+              email: email.text.trim(), password: password.text.trim())
+          .then((result) {
+        String _userId = result.user!.uid;
+        _addOrgToFirestore(_userId);
+        _initializeOrgModel(_userId);
+        _clearSignUpControllers();
+      });
+    } catch (e) {
+      debugPrint(e.toString());
+      Get.snackbar('Sign Up Failed', 'Try again');
     }
   }
 
@@ -72,8 +115,19 @@ class AuthController extends GetxController {
     }
   }
 
-  void donorSignOut() {
+  void signOut() {
     auth.signOut();
+  }
+
+   _addOrgToFirestore(String userId) {
+    firebaseFirestore.collection(orgsCollection).doc(userId).set({
+      'id': userId,
+      'name': name.text.trim(),
+      'address': address.text.trim(),
+      'phone': phone.text.trim(),
+      'email': email.text.trim(),
+      'password': password.text.trim()
+    });
   }
 
   _addDonorToFirestore(String userId) {
@@ -93,6 +147,14 @@ class AuthController extends GetxController {
         .doc(userId)
         .get()
         .then((doc) => DonorModel.fromSnapshot(doc));
+  }
+
+  _initializeOrgModel(String userId) async {
+    orgModel.value = await firebaseFirestore
+        .collection(donorsCollection)
+        .doc(userId)
+        .get()
+        .then((doc) => OrgModel.fromSnapshot(doc));
   }
 
   _clearSignUpControllers() {
@@ -135,12 +197,4 @@ class AuthController extends GetxController {
     }
     return null;
   }
-
-  // void checkFormValid() {
-  //   final isValid = loginFormKey.currentState!.validate();
-  //   if (!isValid) {
-  //     return;
-  //   }
-  //   loginFormKey.currentState!.save();
-  // }
 }

@@ -1,5 +1,6 @@
 import 'package:donate_me/controllers/app_controller.dart';
 import 'package:donate_me/controllers/auth_controller.dart';
+import 'package:donate_me/screens/auth/reg_org_screen.dart';
 import 'package:donate_me/screens/auth/sign_in_screen.dart';
 import 'package:donate_me/screens/choice_screen.dart';
 import 'package:donate_me/screens/choice_screen_two.dart';
@@ -40,6 +41,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/sign-up-screen', page: () => RegDonorScreen()),
         GetPage(name: '/sign-in-screen', page: ()=> SignInScreen()),
         GetPage(name: '/home-screen', page: ()=> HomeScreen()),
+        GetPage(name: '/org-signup-screen', page:()=>RegOrgScreen())
       ],
     );
   }

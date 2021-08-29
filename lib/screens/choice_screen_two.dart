@@ -16,11 +16,10 @@ class ChoiceScreenTwo extends StatelessWidget {
       body: Stack(
         alignment: Alignment.center,
         children: [
-          Container(
-            height: size.height,
-            width: double.infinity,
-            decoration: backgroundImage,
-          ),
+          Image.asset('assets/images/empty_screen.png',
+        width: double.infinity,
+        height: size.height,
+        fit: BoxFit.cover,),
           SafeArea(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
@@ -43,7 +42,7 @@ class ChoiceScreenTwo extends StatelessWidget {
                   Spacer(),
                   Text("Or", style: buttonFontSansita,),
                   Spacer(),
-                  ElevatedButton(onPressed: ()=>null, child: Text("Organisation?", style: buttonFontSansita,),
+                  ElevatedButton(onPressed: ()=> Get.toNamed('/org-signup-screen'), child: Text("Organisation?", style: buttonFontSansita,),
                   style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20),
                     ),

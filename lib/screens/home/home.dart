@@ -17,7 +17,7 @@ class HomeScreen extends StatelessWidget {
         children: [
           Text('You are now in homescreen :D'),
 
-          ElevatedButton(onPressed: ()=> authController.donorSignOut(), child: Text('Sign Out'))
+          ElevatedButton(onPressed: ()=> authController.signOut(), child: Text('Sign Out'))
         ],
       )),
     );

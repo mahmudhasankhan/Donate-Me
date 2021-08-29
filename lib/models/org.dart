@@ -14,11 +14,11 @@ class OrgModel {
   late String password;
 
   OrgModel({
-    required this.id,
-    required this.name,
-    required this.address,
-    required this.email,
-    required this.password,
+     this.id = '',
+     this.name = '',
+     this.address = '',
+     this.email = '',
+     this.password = '',
   });
 
   OrgModel.fromSnapshot(DocumentSnapshot snapshot) {

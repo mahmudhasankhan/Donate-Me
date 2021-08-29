@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:donate_me/helpers/show_loading.dart';
 import 'package:donate_me/models/donor.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -14,8 +15,6 @@ class AuthController extends GetxController {
   Rx<DonorModel> donorModel = DonorModel().obs;
 
   late Rx<User?> firebaseUser;
-
-  TextEditingController id = TextEditingController();
   TextEditingController name = TextEditingController();
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
@@ -25,27 +24,29 @@ class AuthController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    firebaseUser = Rx<User>(auth.currentUser!);
+    firebaseUser = Rx<User?>(auth.currentUser);
     firebaseUser.bindStream(auth.userChanges());
     ever(firebaseUser, _setInitialScreen);
   }
 
   _setInitialScreen(User? user) {
     if (user == null) {
-      Get.offAll('/');
+      Get.offAllNamed('/');
     } else {
-      Get.offAll('/home-screen');
+      Get.offAllNamed('/home-screen');
     }
   }
 
   void donorSignIn() async {
     try {
+      showLoading();
       await auth
           .signInWithEmailAndPassword(
               email: email.text.trim(), password: password.text.trim())
           .then((result) {
         String _userId = result.user!.uid;
         _initializeDonorModel(_userId);
+        _clearSignInControllers();
       });
     } catch (e) {
       debugPrint(e.toString());
@@ -55,6 +56,7 @@ class AuthController extends GetxController {
 
   void donorSignUp() async {
     try {
+      showLoading();
       await auth
           .createUserWithEmailAndPassword(
               email: email.text.trim(), password: password.text.trim())
@@ -62,6 +64,7 @@ class AuthController extends GetxController {
         String _userId = result.user!.uid;
         _addDonorToFirestore(_userId);
         _initializeDonorModel(_userId);
+        _clearSignUpControllers();
       });
     } catch (e) {
       debugPrint(e.toString());
@@ -75,8 +78,8 @@ class AuthController extends GetxController {
 
   _addDonorToFirestore(String userId) {
     firebaseFirestore.collection(donorsCollection).doc(userId).set({
-      'id': id.text.trim(),
-      'name': userId,
+      'id': userId,
+      'name': name.text.trim(),
       'address': address.text.trim(),
       'phone': phone.text.trim(),
       'email': email.text.trim(),
@@ -90,6 +93,19 @@ class AuthController extends GetxController {
         .doc(userId)
         .get()
         .then((doc) => DonorModel.fromSnapshot(doc));
+  }
+
+  _clearSignUpControllers() {
+    name.clear();
+    email.clear();
+    address.clear();
+    password.clear();
+    phone.clear();
+  }
+
+  _clearSignInControllers() {
+    email.clear();
+    password.clear();
   }
 
   String? validateEmail(String val) {

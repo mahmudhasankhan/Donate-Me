@@ -1,4 +1,5 @@
 import 'package:donate_me/constants/controllers.dart';
+import 'package:donate_me/screens/home/components/body.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -12,14 +13,7 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
-      body: Center(child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text('You are now in homescreen :D'),
-
-          ElevatedButton(onPressed: ()=> authController.signOut(), child: Text('Sign Out'))
-        ],
-      )),
+      body: Body()
     );
   }
 }

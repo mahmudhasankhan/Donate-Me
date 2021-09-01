@@ -41,7 +41,7 @@ class AuthController extends GetxController {
     if (user == null) {
       Get.offAllNamed('/');
     } else {
-      Get.offAllNamed('/home-screen');
+      Get.offAllNamed('/main-screen');
     }
   }
 

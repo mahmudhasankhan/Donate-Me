@@ -24,3 +24,13 @@ final TextStyle buttonFontSansita =
     GoogleFonts.sansita(textStyle: TextStyle(fontSize: 24));
 final TextStyle categoryFont =
     GoogleFonts.sansita(textStyle: TextStyle(fontSize: 36));
+
+final TextStyle animatedFont =
+    GoogleFonts.lobsterTwo(textStyle: TextStyle(fontSize: 28));
+final TextStyle animatedFontOne =
+    GoogleFonts.lobsterTwo(textStyle: TextStyle(fontSize: 30));
+final TextStyle animatedFontTwo =
+    GoogleFonts.pacifico(textStyle: TextStyle(fontSize: 30));
+
+
+const kContentColorDarkTheme = Color(0xFFF5FCF9);

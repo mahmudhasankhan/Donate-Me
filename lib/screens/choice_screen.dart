@@ -37,9 +37,7 @@ class ChoiceScreen extends StatelessWidget {
                   style: buttonFontSansita,)
                   ),
                   SizedBox(height: 10,),
-                  ElevatedButton(onPressed: (){
-          
-                  },
+                  ElevatedButton(onPressed: ()=> Get.toNamed('/reg-donee-screen'),
                   style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20),
                     ),

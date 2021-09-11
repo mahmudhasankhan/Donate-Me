@@ -1,6 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:donate_me/constants/constants.dart';
 import 'package:donate_me/constants/controllers.dart';
+import 'package:donate_me/my_flutter_app_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
@@ -57,7 +58,7 @@ class Body extends StatelessWidget {
           ),
           SizedBox(height: 10,),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
+            padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
             child: ClipRRect(borderRadius: BorderRadius.circular(20),
             child: Container(
               width: double.infinity,
@@ -80,7 +81,93 @@ class Body extends StatelessWidget {
             ),),
             ),
             SizedBox(height: 20,),
-
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
+              child: Row(
+                children: [
+                  Stack(
+                    alignment: Alignment.center,
+                     children: [
+                       ClipRRect(
+                         borderRadius: BorderRadius.circular(15),
+                         child: Container(
+                           height: size.height * .18,
+                             width: size.width * 0.4 ,
+                             color: kPrimaryColor,
+                         ),
+                       ),
+                      Positioned(
+                        left: 10, 
+                        right: 10,
+                        child: Column(
+                          children: [
+                            Text('DONATION PROCEDURE ?',
+                            textAlign: TextAlign.center, 
+                            style: GoogleFonts.roboto(textStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),),
+                            SizedBox(height: 10,),
+                            ElevatedButton(onPressed: (){}, child: Text('CLICK HERE',
+                            style: GoogleFonts.roboto(textStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.bold,)), ),
+                            style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20),
+                    ),
+                    primary: Colors.white,
+                    onPrimary: Colors.black,
+                    elevation: 5.0,
+                    shadowColor: Colors.black,),  
+                            )],
+                        ))
+                     ]
+                  ),
+                  SizedBox(width: 20,),
+                  Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Container(
+                      height: size.height * .2,
+                      width: size.width * 0.4,
+                      ),
+                      Positioned(
+                        bottom: -5,
+                        child: Container(
+                          height: size.height * .18,
+                          width: size.width *.26,
+                          decoration: BoxDecoration(
+                            color: kPrimaryColor,
+                            shape: BoxShape.circle
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        bottom: -2,
+                        child: Container(
+                            height: size.height * .17,
+                            width: size.width *.22,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              shape: BoxShape.circle
+                            ),
+                          ),
+                      ),
+                        Positioned(
+                          bottom: 30,
+                          child: GestureDetector(
+                            onTap: (){},
+                            child: Column(
+                              children: [
+                                Text('Top Donors', style:GoogleFonts.roboto(textStyle: TextStyle(fontSize: 12, fontWeight: FontWeight.bold,)) ,),
+                                Icon(Icons.double_arrow_rounded)
+                              ],
+                            ),
+                          ),
+                        ),
+                        Positioned(top: 0,
+                        left: 57,
+                          child: Icon(MyFlutterApp.crown))
+                   ],
+                    ),
+                ],
+              ),
+            )
         ],
       ),
     ));

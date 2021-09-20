@@ -1,14 +1,16 @@
+import 'package:donate_me/screens/category/widgets/DoneeWidget.dart';
 import 'package:flutter/material.dart';
 
 class CategoryScreen extends StatelessWidget {
-  const CategoryScreen({ Key? key }) : super(key: key);
+ const CategoryScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
-      body: Center(child: Text('Category Page'),),
-      
+      body: Container(
+        color: Colors.white,
+        child: DoneeWidget(),
+      )
     );
   }
 }

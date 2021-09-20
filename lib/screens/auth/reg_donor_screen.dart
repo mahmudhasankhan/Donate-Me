@@ -185,7 +185,7 @@ class RegDonorScreen extends StatelessWidget {
                           text: 'Sign in',
                           style: TextStyle(color: Colors.blue, fontSize: 19),
                           recognizer: TapGestureRecognizer()
-                            ..onTap = () => Get.toNamed('/sign-in-screen'))
+                            ..onTap = () => Get.toNamed('/sign-in-screen', arguments: 'donor'))
                     ])),
                 Spacer(
                   flex: 3,

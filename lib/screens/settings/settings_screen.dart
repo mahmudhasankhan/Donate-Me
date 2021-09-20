@@ -8,14 +8,6 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       body: Center(child:  ElevatedButton(
-              onPressed: () {
-                authController.signOut();
-              },
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(kPrimaryColor),
-              ),
-              child: Text('Sign Out'))),
     );
   }
 }

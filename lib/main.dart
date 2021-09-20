@@ -1,5 +1,6 @@
 import 'package:donate_me/controllers/app_controller.dart';
 import 'package:donate_me/controllers/auth_controller.dart';
+import 'package:donate_me/controllers/donee_controller.dart';
 import 'package:donate_me/controllers/nav_controller.dart';
 import 'package:donate_me/screens/auth/reg_donee_screen.dart';
 import 'package:donate_me/screens/auth/reg_org_screen.dart';
@@ -20,6 +21,7 @@ void main() async {
     Get.put(AuthController());
     Get.put(AppController());
     Get.put(NavController());
+    Get.put(DoneeController());
   });
   runApp(MyApp());
 }
@@ -47,7 +49,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/home-screen', page: () => HomeScreen()),
         GetPage(name: '/org-signup-screen', page: () => RegOrgScreen()),
         GetPage(name: '/main-screen', page: () => MainScreen()),
-        GetPage(name: '/reg-donee-screen', page: ()=> RegDoneeScreen()),
+        GetPage(name: '/reg-donee-screen', page: () => RegDoneeScreen()),
       ],
     );
   }

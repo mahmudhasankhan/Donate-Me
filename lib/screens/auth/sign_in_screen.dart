@@ -35,7 +35,7 @@ class SignInScreen extends StatelessWidget {
                   flex: 2,
                 ),
                 Text(
-                  "Sign Up Please!",
+                  "Sign In Please!",
                   style: categoryFont,
                 ),
                 Spacer(
@@ -101,11 +101,15 @@ class SignInScreen extends StatelessWidget {
                                 onPressed: () {
                                   if (authController.signinFormKey.currentState!
                                       .validate()) {
-                                    authController.donorSignIn();
-                                  } else if (authController
-                                      .orgsigninFormKey.currentState!
-                                      .validate()) {
-                                    authController.orgSignIn();
+                                    if (Get.arguments == 'donor') {
+                                      authController.donorSignIn();
+                                    }
+                                    if (Get.arguments == 'donee') {
+                                      authController.doneeSignIn();
+                                    }
+                                    if (Get.arguments == 'org') {
+                                      authController.orgSignIn();
+                                    }
                                   }
                                 },
                                 style: ButtonStyle(

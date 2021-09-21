@@ -20,7 +20,6 @@ class MainScreen extends StatelessWidget {
     HomeScreen(),
     CategoryScreen(),
     ProfileScreen(),
-    SettingsScreen()
   ];
 
   var user = FirebaseAuth.instance.currentUser;
@@ -37,6 +36,7 @@ class MainScreen extends StatelessWidget {
             )),
         centerTitle: true,
         elevation: 0,
+         iconTheme: IconThemeData(color: kPrimaryColor),
       ),
       drawer: Drawer(
         child: ListView(
@@ -68,24 +68,25 @@ class MainScreen extends StatelessWidget {
       bottomNavigationBar: ClipRRect(
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(30), topRight: Radius.circular(30)),
-        child: Obx(() => BottomNavigationBar(
-              backgroundColor: kPrimaryColor,
-              type: BottomNavigationBarType.fixed,
-              selectedIconTheme: IconThemeData(color: Colors.white),
-              selectedItemColor: Colors.white70,
-              unselectedItemColor: Colors.black.withOpacity(0.32),
-              items: [
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.home_rounded), label: 'Home'),
-                BottomNavigationBarItem(icon: Icon(Icons.list), label: 'List'),
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.person_outline_rounded), label: 'Profile'),
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.settings), label: 'Settings'),
-              ],
-              currentIndex: _navController.selectedIndex,
-              onTap: (index) => _navController.setselectedIndex = index,
-            )),
+        child: Obx(() => SizedBox(
+          height: 70,
+          child: BottomNavigationBar(
+                backgroundColor: kPrimaryColor,
+                type: BottomNavigationBarType.fixed,
+                selectedIconTheme: IconThemeData(color: Colors.white),
+                selectedItemColor: Colors.white70,
+                unselectedItemColor: Colors.black.withOpacity(0.32),
+                items: [
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.home_rounded), label: 'Home'),
+                  BottomNavigationBarItem(icon: Icon(Icons.list), label: 'List'),
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.person_outline_rounded), label: 'Profile'),
+                ],
+                currentIndex: _navController.selectedIndex,
+                onTap: (index) => _navController.setselectedIndex = index,
+              ),
+        )),
       ),
     );
   }

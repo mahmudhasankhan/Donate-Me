@@ -37,6 +37,7 @@ class MainScreen extends StatelessWidget {
             )),
         centerTitle: true,
         elevation: 0,
+        iconTheme: IconThemeData(color: kPrimaryColor),
       ),
       drawer: Drawer(
         child: ListView(

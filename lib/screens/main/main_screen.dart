@@ -20,6 +20,7 @@ class MainScreen extends StatelessWidget {
     HomeScreen(),
     CategoryScreen(),
     ProfileScreen(),
+    SettingsScreen()
   ];
 
   var user = FirebaseAuth.instance.currentUser;
@@ -36,7 +37,6 @@ class MainScreen extends StatelessWidget {
             )),
         centerTitle: true,
         elevation: 0,
-         iconTheme: IconThemeData(color: kPrimaryColor),
       ),
       drawer: Drawer(
         child: ListView(
@@ -82,6 +82,8 @@ class MainScreen extends StatelessWidget {
                   BottomNavigationBarItem(icon: Icon(Icons.list), label: 'List'),
                   BottomNavigationBarItem(
                       icon: Icon(Icons.person_outline_rounded), label: 'Profile'),
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.settings), label: 'Settings'),
                 ],
                 currentIndex: _navController.selectedIndex,
                 onTap: (index) => _navController.setselectedIndex = index,

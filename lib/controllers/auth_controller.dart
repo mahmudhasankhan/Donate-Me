@@ -1,5 +1,4 @@
-
-
+import 'package:donate_me/constants/controllers.dart';
 import 'package:donate_me/helpers/show_loading.dart';
 import 'package:donate_me/models/donee.dart';
 import 'package:donate_me/models/donor.dart';
@@ -54,6 +53,8 @@ class AuthController extends GetxController {
     }
   }
 
+
+
   Stream<DonorModel> listenToDonor() => firebaseFirestore
       .collection(donorsCollection)
       .doc(firebaseUser.value?.uid)
@@ -72,15 +73,14 @@ class AuthController extends GetxController {
       .snapshots()
       .map((snapshot) => OrgModel.fromSnapshot(snapshot));
 
-  void doneeSignIn() async {
+  Future doneeSignIn() async {
     try {
       showLoading();
       await auth
           .signInWithEmailAndPassword(
               email: email.text.trim(), password: password.text.trim())
           .then((result) {
-        // String _userId = result.user!.uid;
-        // _initializeDoneeModel(_userId);
+        
         _clearSignInControllers();
       });
     } catch (e) {
@@ -89,15 +89,28 @@ class AuthController extends GetxController {
     }
   }
 
-  void orgSignIn() async {
+  Future orgSignIn() async {
     try {
       showLoading();
       await auth
           .signInWithEmailAndPassword(
               email: email.text.trim(), password: password.text.trim())
           .then((result) {
-        // String _userId = result.user!.uid;
-        // _initializeOrgModel(_userId);
+        result.user?.reload();
+      });
+    } catch (e) {
+      debugPrint(e.toString());
+      Get.snackbar('Sign In Failed', 'Try again');
+    }
+  }
+
+  Future donorSignIn() async {
+    try {
+      showLoading();
+      await auth
+          .signInWithEmailAndPassword(
+              email: email.text.trim(), password: password.text.trim())
+          .then((result) {
         _clearSignInControllers();
       });
     } catch (e) {
@@ -106,24 +119,7 @@ class AuthController extends GetxController {
     }
   }
 
-  void donorSignIn() async {
-    try {
-      showLoading();
-      await auth
-          .signInWithEmailAndPassword(
-              email: email.text.trim(), password: password.text.trim())
-          .then((result) {
-        // String _userId = result.user!.uid;
-        // _initializeDonorModel(_userId);
-        _clearSignInControllers();
-      });
-    } catch (e) {
-      debugPrint(e.toString());
-      Get.snackbar('Sign In Failed', 'Try again');
-    }
-  }
-
-  void doneeSignUp() async {
+  Future doneeSignUp() async {
     try {
       showLoading();
       await auth
@@ -132,10 +128,8 @@ class AuthController extends GetxController {
           .then((result) {
         String _userId = result.user!.uid;
         _addDoneeToFirestore(_userId);
-        // _initializeDoneeModel(_userId);
         _clearSignUpControllers();
-        result.user?.updateDisplayName(doneeModel.value.name);
-        result.user?.updateEmail(doneeModel.value.email);
+        result.user?.updateDisplayName(name.text);
       });
     } catch (e) {
       debugPrint(e.toString());
@@ -143,7 +137,7 @@ class AuthController extends GetxController {
     }
   }
 
-  void orgSignUp() async {
+  Future orgSignUp() async {
     try {
       showLoading();
       await auth
@@ -152,10 +146,9 @@ class AuthController extends GetxController {
           .then((result) {
         String _userId = result.user!.uid;
         _addOrgToFirestore(_userId);
-        // _initializeOrgModel(_userId);
         _clearSignUpControllers();
-        result.user?.updateDisplayName(orgModel.value.name);
-        result.user?.updateEmail(orgModel.value.email);
+        result.user?.reload();
+        result.user?.updateDisplayName(name.text);
       });
     } catch (e) {
       debugPrint(e.toString());
@@ -163,7 +156,7 @@ class AuthController extends GetxController {
     }
   }
 
-  void donorSignUp() async {
+  Future donorSignUp() async {
     try {
       showLoading();
       await auth
@@ -172,10 +165,9 @@ class AuthController extends GetxController {
           .then((result) {
         String _userId = result.user!.uid;
         _addDonorToFirestore(_userId);
-        // _initializeDonorModel(_userId);
         _clearSignUpControllers();
-        result.user?.updateDisplayName(donorModel.value.name);
-        result.user?.updateEmail(donorModel.value.email);
+        result.user?.reload();
+        result.user?.updateDisplayName(name.text);
       });
     } catch (e) {
       debugPrint(e.toString());
@@ -185,6 +177,7 @@ class AuthController extends GetxController {
 
   void signOut() {
     auth.signOut();
+    name.clear();
   }
 
   _addDoneeToFirestore(String userId) {
@@ -221,32 +214,7 @@ class AuthController extends GetxController {
     });
   }
 
-  _initializeDonorModel(String userId) async {
-    donorModel.value = await firebaseFirestore
-        .collection(donorsCollection)
-        .doc(userId)
-        .get()
-        .then((doc) => DonorModel.fromSnapshot(doc));
-  }
-
-  _initializeOrgModel(String userId) async {
-    orgModel.value = await firebaseFirestore
-        .collection(donorsCollection)
-        .doc(userId)
-        .get()
-        .then((doc) => OrgModel.fromSnapshot(doc));
-  }
-
-  _initializeDoneeModel(String userId) async {
-    doneeModel.value = await firebaseFirestore
-        .collection(doneeCollection)
-        .doc(userId)
-        .get()
-        .then((doc) => DoneeModel.fromSnapshot(doc));
-  }
-
   _clearSignUpControllers() {
-    name.clear();
     email.clear();
     address.clear();
     password.clear();

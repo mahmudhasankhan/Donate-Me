@@ -1,6 +1,7 @@
 import 'package:donate_me/constants/constants.dart';
 import 'package:donate_me/models/donee.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SingleDoneeWidget extends StatelessWidget {
@@ -87,7 +88,7 @@ class SingleDoneeWidget extends StatelessWidget {
             height: 5,
           ),
           ElevatedButton(
-              onPressed: () {},
+              onPressed: ()=> Get.toNamed('/payment-screen'),
               child: Text(
                 'Donate',
                 style: buttonFontSansita,

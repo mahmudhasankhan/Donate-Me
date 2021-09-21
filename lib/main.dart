@@ -5,10 +5,12 @@ import 'package:donate_me/controllers/nav_controller.dart';
 import 'package:donate_me/screens/auth/reg_donee_screen.dart';
 import 'package:donate_me/screens/auth/reg_org_screen.dart';
 import 'package:donate_me/screens/auth/sign_in_screen.dart';
+import 'package:donate_me/screens/category/widgets/payment.dart';
 import 'package:donate_me/screens/choice_screen.dart';
 import 'package:donate_me/screens/choice_screen_two.dart';
 import 'package:donate_me/constants/constants.dart';
 import 'package:donate_me/screens/auth/reg_donor_screen.dart';
+import 'package:donate_me/screens/home/components/steps.dart';
 import 'package:donate_me/screens/home/home.dart';
 import 'package:donate_me/screens/main/main_screen.dart';
 import 'package:flutter/material.dart';
@@ -50,6 +52,8 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/org-signup-screen', page: () => RegOrgScreen()),
         GetPage(name: '/main-screen', page: () => MainScreen()),
         GetPage(name: '/reg-donee-screen', page: () => RegDoneeScreen()),
+        GetPage(name: '/steps-screen', page: ()=> StepSreen()),
+        GetPage(name: '/payment-screen', page: ()=> PaymentScreen()),
       ],
     );
   }

@@ -3,6 +3,7 @@ import 'package:donate_me/constants/constants.dart';
 import 'package:donate_me/constants/controllers.dart';
 import 'package:donate_me/my_flutter_app_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 
@@ -105,7 +106,7 @@ class Body extends StatelessWidget {
                             textAlign: TextAlign.center, 
                             style: GoogleFonts.roboto(textStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),),
                             SizedBox(height: 10,),
-                            ElevatedButton(onPressed: (){}, child: Text('CLICK HERE',
+                            ElevatedButton(onPressed: () => Get.toNamed('/steps-screen'), child: Text('CLICK HERE',
                             style: GoogleFonts.roboto(textStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.bold,)), ),
                             style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20),

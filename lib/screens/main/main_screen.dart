@@ -19,8 +19,7 @@ class MainScreen extends StatelessWidget {
   final List<Widget> bodyContents = [
     HomeScreen(),
     CategoryScreen(),
-    ProfileScreen(),
-    SettingsScreen()
+    ProfileScreen()
   ];
 
   var user = FirebaseAuth.instance.currentUser;
@@ -83,8 +82,6 @@ class MainScreen extends StatelessWidget {
                   BottomNavigationBarItem(icon: Icon(Icons.list), label: 'List'),
                   BottomNavigationBarItem(
                       icon: Icon(Icons.person_outline_rounded), label: 'Profile'),
-                  BottomNavigationBarItem(
-                      icon: Icon(Icons.settings), label: 'Settings'),
                 ],
                 currentIndex: _navController.selectedIndex,
                 onTap: (index) => _navController.setselectedIndex = index,

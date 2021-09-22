@@ -61,7 +61,7 @@ class SingleDoneeWidget extends StatelessWidget {
             height: 5,
           ),
           Flexible(
-            child: Text('Phone: ' + donee.phone,
+            child: Text('Bkash Number: ' + donee.phone,
                 style: GoogleFonts.roboto(textStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold ))),
           ),
           SizedBox(

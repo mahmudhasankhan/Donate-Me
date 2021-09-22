@@ -53,8 +53,6 @@ class AuthController extends GetxController {
     }
   }
 
-
-
   Stream<DonorModel> listenToDonor() => firebaseFirestore
       .collection(donorsCollection)
       .doc(firebaseUser.value?.uid)
@@ -80,7 +78,6 @@ class AuthController extends GetxController {
           .signInWithEmailAndPassword(
               email: email.text.trim(), password: password.text.trim())
           .then((result) {
-        
         _clearSignInControllers();
       });
     } catch (e) {
@@ -219,6 +216,7 @@ class AuthController extends GetxController {
     address.clear();
     password.clear();
     phone.clear();
+    // needs.clear();
   }
 
   _clearSignInControllers() {

@@ -11,6 +11,7 @@ import 'package:donate_me/screens/choice_screen_two.dart';
 import 'package:donate_me/constants/constants.dart';
 import 'package:donate_me/screens/auth/reg_donor_screen.dart';
 import 'package:donate_me/screens/home/components/steps.dart';
+import 'package:donate_me/screens/home/components/top_donor_screen.dart';
 import 'package:donate_me/screens/home/home.dart';
 import 'package:donate_me/screens/main/main_screen.dart';
 import 'package:flutter/material.dart';
@@ -54,6 +55,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/reg-donee-screen', page: () => RegDoneeScreen()),
         GetPage(name: '/steps-screen', page: ()=> StepSreen()),
         GetPage(name: '/payment-screen', page: ()=> PaymentScreen()),
+        GetPage(name: '/top-donor-screen', page: ()=> TopDonorScreen()),
       ],
     );
   }

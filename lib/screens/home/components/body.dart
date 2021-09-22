@@ -152,7 +152,7 @@ class Body extends StatelessWidget {
                         Positioned(
                           bottom: 30,
                           child: GestureDetector(
-                            onTap: (){},
+                            onTap: () => Get.toNamed('/top-donor-screen'),
                             child: Column(
                               children: [
                                 Text('Top Donors', style:GoogleFonts.roboto(textStyle: TextStyle(fontSize: 12, fontWeight: FontWeight.bold,)) ,),

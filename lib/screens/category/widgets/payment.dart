@@ -2,6 +2,7 @@
 
 import 'package:donate_me/constants/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class PaymentScreen extends StatefulWidget {
@@ -20,9 +21,15 @@ class _PaymentScreenState extends State<PaymentScreen> {
       appBar: AppBar(
         title: Text(
           'Payment',
+          style: GoogleFonts.chewy(
+              textStyle: TextStyle(fontSize: 28, color: kPrimaryColor),
+            )
         ),
         centerTitle: true,
-        backgroundColor: kPrimaryColor,
+        backgroundColor: Colors.white,
+        elevation: 0,
+        iconTheme: IconThemeData(color: kPrimaryColor),
+
       ),
       body: WebView(
         javascriptMode: JavascriptMode.unrestricted,
